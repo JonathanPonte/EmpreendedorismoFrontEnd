@@ -32,6 +32,11 @@ const logoStyle = {
   height: "35px",
 };
 
+const header={
+  minWidth: "500px",
+}
+
+
 
 const menu = (
   <Menu>
@@ -46,13 +51,14 @@ const menu = (
 function App() {
   const loc = window.location.pathname;
 
+  
   return (
     <Row>
       <Col span={24}>
         <Layout>
           <Row>
             <Col span={24}>
-              <Header className="d-flex">
+              <Header className="d-flex" style={header}>
                 <a href="/">
                   <img style={logoStyle} src={Logo} alt="Logo branco" />
                 </a>

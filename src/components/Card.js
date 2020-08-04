@@ -4,6 +4,7 @@ import { Card } from "antd";
 /*  CARDS DEFAULT */
 
 export const CardDefault = styled(Card)`
+margin: ${props => (props.margin ? props.margin : 'auto')};
 box-shadow: 0px 2px 7px 0px #484747;
 border: none;
 border-radius: 20px;

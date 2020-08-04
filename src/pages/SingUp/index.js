@@ -1,17 +1,12 @@
 import React, { Component } from 'react'
-import { Container } from '../../components/Container';
+import { Container, ContainerHeader } from '../../components/Container';
 import { InputDefault } from '../../components/input';
 import { LabelDefault } from '../../components/Label';
 import { ButtonDefault } from '../../components/Button';
-import { DatePickerDefault } from '../../components/DatePickerDefault'
-import Form from 'antd/lib/form/Form';
+import { DatePickerDefault } from '../../components/DatePickerDefault';
 import { Row, Col } from 'antd';
+import { FormDefault } from '../../components/Form';
 
-const form = {
-    width: "600px",
-    height: "400px",
-    margin: "auto",
-};
 
 const button = {
     marginTop: "30px"
@@ -21,10 +16,11 @@ const button = {
 export default function SingUp() {
 
     return (
-        <Container>
-            <Form style={form}>
+        <ContainerHeader>
+            <FormDefault>
                 <Row >
                     <Col span={24}>
+                        <h1>Cadastro</h1>
                         <div>
                             <LabelDefault className="f-left">Nome:</LabelDefault >
                             <InputDefault placeholder="Insira seu nome" />
@@ -65,8 +61,8 @@ export default function SingUp() {
                     </Col>
                 </Row>
 
-            </Form>
-        </Container>
+            </FormDefault>
+        </ContainerHeader>
     );
 
 }

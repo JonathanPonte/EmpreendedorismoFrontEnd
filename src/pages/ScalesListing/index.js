@@ -1,10 +1,9 @@
 import React from 'react';
-import { ContainerHeaderSearch, Container, ContainerScale } from '../../components/Container';
+import { ContainerHeader, Container, ContainerScale } from '../../components/Container';
 import { Row, Col } from 'antd';
 import { SearchOutlined, PlusOutlined } from '@ant-design/icons';
 import { InputDefault } from '../../components/input';
-import { ButtonDefault } from '../../components/Button';
-import { CardScale } from '../../components/Card';
+import { ButtonDefault} from '../../components/Button';
 
 const cardInfo = [
     { name: "Escala 1", image: "https://blog.hotmart.com/blog/2017/10/BLOG_empreendedorismo-no-brasil-670x419.png" },
@@ -12,21 +11,25 @@ const cardInfo = [
     { name: "Escala 3", image: "https://blog.hotmart.com/blog/2017/10/BLOG_empreendedorismo-no-brasil-670x419.png" },
     { name: "Escala 4", image: "https://blog.hotmart.com/blog/2017/10/BLOG_empreendedorismo-no-brasil-670x419.png" },
     { name: "Escala 4", image: "https://blog.hotmart.com/blog/2017/10/BLOG_empreendedorismo-no-brasil-670x419.png" },
+    { name: "Escala 5", image: "https://blog.hotmart.com/blog/2017/10/BLOG_empreendedorismo-no-brasil-670x419.png" },
 ]
 
 const renderCard = (card, index) => {
     return (
         <ContainerScale margin="40px 20px 0px 10px" key={index} className="box">
-            <img src={card.image} />
-            <h3>{card.name}</h3>
+            <a href="/scale/{index}" >
+                <img src={card.image} />
+                <h3>{card.name}</h3>
+            </a>
         </ContainerScale>
     )
 }
 
 const divS = {
-    margin: '10px auto',
+    margin: '10px auto auto auto',
     display: 'inline-block',
     width: '100%',
+    textAlign: "initial",
 };
 
 
@@ -34,7 +37,7 @@ const divS = {
 
 export default function ScaleLinsting() {
     return (
-        <ContainerHeaderSearch>
+        <ContainerHeader>
             <Row>
                 <Col span={24}>
                     <div>
@@ -47,7 +50,7 @@ export default function ScaleLinsting() {
                         <ButtonDefault margin="0 0 0 10px" float="left">
                             Buscar
                         </ButtonDefault>
-                        <ButtonDefault float="right" icon={<PlusOutlined />}>
+                        <ButtonDefault href="/new_scale" float="right" icon={<PlusOutlined />}>
                             Nova escala
                         </ButtonDefault>
                     </div>
@@ -60,6 +63,6 @@ export default function ScaleLinsting() {
                     </div>
                 </Col>
             </Row>
-        </ContainerHeaderSearch>
+        </ContainerHeader>
     );
 }

@@ -29,7 +29,6 @@ li:hover {
 
 export const UlHeaderOut = styled(UlDefault)`
    margin: auto 0 auto auto;
-   
 `;
 
 
