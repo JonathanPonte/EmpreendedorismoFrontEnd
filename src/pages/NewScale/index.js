@@ -55,7 +55,7 @@ export default function NewScale() {
                     </Col>
                     <Col span={24}>
                         <div>
-                            <LabelDefault className="f-left">Labels dos  Valores:</LabelDefault >
+                            <LabelDefault className="f-left">Labels dos Valores:</LabelDefault >
                         </div>
                     </Col>
                     <Col span={24}>
@@ -72,7 +72,6 @@ export default function NewScale() {
                     <Col span={24}>
                         <DivButtonDeleteFile>
                             <DivInputFileDefault>
-
                                 <PaperClipOutlined />
                                 <InputDefault id="inputFile1" type="file" />
                                 <LabelDefault id="labelInputFile1"></LabelDefault>

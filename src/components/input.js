@@ -27,6 +27,16 @@ export const InputDefault = styled(Input)`
       }
 `;
 
+export const InputItemCard = styled(Input)`
+ min-width: ${props => (props.minWidth ? props.minWidth : 'auto')};
+ max-width: ${props => (props.maxWidth ? props.maxWidth : 'auto')};
+ margin: ${props => (props.margin ? props.margin : 'auto')};
+ float: ${props => (props.float ? props.float : 'none')};
+ border: 1px solid #000;
+ border-radius: 20px;
+ box-shadow: none;
+`;
+
 export const InputSingUp = styled(InputDefault)`
 
 margin-bottom: 10px

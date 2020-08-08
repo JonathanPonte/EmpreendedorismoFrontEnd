@@ -4,7 +4,7 @@ import Form from 'antd/lib/form/Form';
 
 export const FormDefault = styled(Form)`
  height: 100%;
- width: 50%;
+ width: 60%;
  margin: auto;
 
  h1 {
@@ -15,6 +15,7 @@ export const FormDefault = styled(Form)`
 
 
 export const FormInformationScale = styled(Form)`
+ min-width: 700px;
  height: 100%;
  width: 80%;
  margin: auto;

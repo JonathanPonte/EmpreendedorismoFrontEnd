@@ -114,3 +114,27 @@ export const DivButtonDeleteFile = styled.div`
     }
   }
 `;
+
+
+export const DivNumberItem = styled.div`
+  display: flex;
+  height: 100%;
+  width: 35px;
+  border: 1px solid #000;
+  border-radius: 20px;
+  background-color: #fff;
+  margin: auto 5px auto -1px;
+  padding-left: 13px;
+`;
+
+export const DivLabelFormat = styled.div`
+  min-height ${props => (props.minHeight ? props.minHeight : 'auto')};
+  max-width ${props => (props.maxWidth ? props.maxWidth : 'auto')};
+  display: flex;
+  height: 100%;
+  border: 1px solid #000;
+  border-radius: 20px;
+  background-color: #fff;
+  margin: 5px;
+  padding: ${props => (props.padding ? props.padding : '7px 2px 2px 10px')};
+`;
