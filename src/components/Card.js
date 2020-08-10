@@ -47,6 +47,9 @@ export const CardListDefault = styled(Card)`
   border-radius: 36px;
   padding: 5px;
   min-height: 100px;
+  margin: ${props => (props.margin ? props.margin : 'auto')};
+  background: ${props => (props.background ? props.background : 'auto')};
+  
 
   .ant-card-body {
     max-height: 400px;

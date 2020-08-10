@@ -12,8 +12,8 @@ export default function Header() {
         <a href="/about">Sobre o sistema</a>
       </Menu.Item>
       <Menu.Divider />
-      <Menu.Item key="1">Novo admin</Menu.Item>
-      <Menu.Item key="2">Sair</Menu.Item>
+      <Menu.Item key="1">Sair</Menu.Item>
+      <Menu.Item key="2">Trocar Senha</Menu.Item>
     </Menu>
   );
 
@@ -27,7 +27,7 @@ export default function Header() {
         </a>
           </li>
           <li>
-            <a href="/exercises">
+            <a href="/adm">
               Administradores
         </a>
           </li>

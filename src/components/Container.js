@@ -12,6 +12,7 @@ export const ContainerHeader = styled.div`
 height: 100%;
 width: 100%;
 padding: 30px;
+margin: ${props => (props.margin ? props.margin : 'auto')};
 `;
 
 export const ContainerScale = styled.div`
@@ -97,6 +98,7 @@ export const DivInputFileDefault = styled.div`
 
 
 export const DivButtonDeleteFile = styled.div`
+  margin: ${props => (props.margin ? props.margin : 'auto')};
   display: flex;
 
   .deleteButton {
@@ -137,4 +139,10 @@ export const DivLabelFormat = styled.div`
   background-color: #fff;
   margin: 5px;
   padding: ${props => (props.padding ? props.padding : '7px 2px 2px 10px')};
+`;
+
+export const ContainerHeaderAdm = styled.div`
+height: 100%;
+width: 80%;
+padding: 30px;
 `;

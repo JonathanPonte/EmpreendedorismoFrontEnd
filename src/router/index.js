@@ -6,7 +6,8 @@ import SingUp from '../pages/SingUp/index';
 import About from '../pages/About/index';
 import ScalesListing from '../pages/ScalesListing/index';
 import NewScale from '../pages/NewScale/index';
-import InformationScale from '../pages/InformationScale/index'
+import InformationScale from '../pages/InformationScale/index';
+import ListAdms from '../pages/ListAdms/index';
 
 const Routes = () => {
 
@@ -19,6 +20,7 @@ const Routes = () => {
             <Route path="/scales_listing" component={ScalesListing}/>
             <Route path="/new_scale" component={NewScale}/>
             <Route path="/scale/:id" component={InformationScale}/>
+            <Route path="/adm" component={ListAdms}/>
         </Switch>
         </BrowserRouter>
     );
