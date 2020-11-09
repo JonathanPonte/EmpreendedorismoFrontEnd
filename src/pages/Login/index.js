@@ -84,26 +84,24 @@ export default function Login() {
                     }
                 >
                     <Form>
-                    <h3>Informe seu email.</h3>
-                    <InputDefault
-                    type="email"
-                    placeholder="Insira seu email"
-                    />
+                        <h3>Informe seu email.</h3>
+                        <InputDefault
+                            type="email"
+                            placeholder="Insira seu email"
+                        />
                     </Form>
                 </ModalRecoverPassword>
                 <br />
                 <br />
 
                 <ButtonLogin>
-                <a href="/scales_listing" >Entrar</a>    
+                    <a href="/scales_listing" >Entrar</a>
                 </ButtonLogin>
 
                 <br />
 
                 <a href="https://www.facebook.com/"> <img src={Face} style={imgSocialMedia} /> </a>
                 <a href="https://www.google.com/"><img src={Google} style={imgSocialMedia} /></a>
-
-
 
             </Form>
         </Container>

@@ -46,16 +46,16 @@ export const CardListDefault = styled(Card)`
   border: 1px solid #000;
   border-radius: 36px;
   padding: 5px;
-  min-height: 100px;
+  min-height: 400px;
   margin: ${props => (props.margin ? props.margin : 'auto')};
   background: ${props => (props.background ? props.background : 'auto')};
   
 
   .ant-card-body {
-    max-height: 400px;
-    overflow-y: scroll;
     margin: 2px 20px 5px 0;
     padding: 0;
+    max-height: 400px;
+    overflow-y: scroll;
   }
 
   .ant-card-head {

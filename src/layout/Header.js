@@ -12,8 +12,8 @@ export default function Header() {
         <a href="/about">Sobre o sistema</a>
       </Menu.Item>
       <Menu.Divider />
+      <Menu.Item key="2"><a href="/change_password">Mudar senha</a></Menu.Item>
       <Menu.Item key="1">Sair</Menu.Item>
-      <Menu.Item key="2">Trocar Senha</Menu.Item>
     </Menu>
   );
 

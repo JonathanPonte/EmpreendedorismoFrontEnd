@@ -7,6 +7,7 @@ import { InputDefault } from '../../components/input';
 import { ButtonDefault } from '../../components/Button';
 import { CardListDefault } from '../../components/Card';
 import { DeleteOutlined } from "@ant-design/icons";
+import { FormDefault } from '../../components/Form';
 
 const divName = {
     width: "20%",
@@ -16,6 +17,31 @@ const divTrash = {
     width: "80%",
 }
 
+const cardAdms = [
+    { name: "Jonathan Cardoso", cargo: "Administrador" },
+    { name: "Miqueias Rodrigues", cargo: "Administrador" },
+    { name: "Juliana Alves", cargo: "Administrador" },
+    { name: "Ronaldo Almeida", cargo: "Administrador" },
+    { name: "Plinio Feitosa", cargo: "Administrador" },
+    { name: "Rodrigo Lins", cargo: "Administrador" },
+    { name: "Rodrigo Lins", cargo: "Administrador" },
+]
+
+const renderCard = (card, index) => {
+    return (
+        <DivLabelFormat key={index}>
+            <div style={divTrash} >
+                <LabelDefault className="f-left" marginBottom="none">{card.name}</LabelDefault><br />
+                <h5 className="f-left">{card.cargo}</h5>
+            </div>
+            <div style={divTrash}>
+                <DivButtonDeleteFile className="f-right" margin="10px">
+                    <DeleteOutlined className="deleteButton" />
+                </DivButtonDeleteFile>
+            </div>
+        </DivLabelFormat>
+    )
+}
 
 export default function ListAdms() {
     return (
@@ -32,27 +58,15 @@ export default function ListAdms() {
                         <ButtonDefault margin="0 0 0 10px" float="left">
                             Buscar
                         </ButtonDefault>
-                        <ButtonDefault href="/new_scale" float="right" icon={<PlusOutlined />}>
+                        <ButtonDefault href="/new_adm" float="right" icon={<PlusOutlined />}>
                             Nova Adm
                         </ButtonDefault>
                     </div>
                 </Col>
-            </Row>
-            <Row>
                 <Col span={24}>
                     <div>
-                        <CardListDefault margin="20px 0 0 0" >
-                            <DivLabelFormat>
-                                <div style={divTrash}>
-                                    <LabelDefault className="f-left" marginBottom="none">Jonathan Cardoso</LabelDefault><br />
-                                    <h5 className="f-left">Administrador</h5>
-                                </div>
-                                <div style={divTrash}>
-                                    <DivButtonDeleteFile className="f-right" margin="10px">
-                                        <DeleteOutlined className="deleteButton" />
-                                    </DivButtonDeleteFile>
-                                </div>
-                            </DivLabelFormat>
+                        <CardListDefault margin="20px 0 0 0">
+                            {cardAdms.map(renderCard)}
                         </CardListDefault>
                     </div>
                 </Col>

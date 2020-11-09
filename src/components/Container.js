@@ -12,7 +12,7 @@ export const ContainerHeader = styled.div`
 height: 100%;
 width: 100%;
 padding: 30px;
-margin: ${props => (props.margin ? props.margin : 'auto')};
+margin: ${props => (props.margin ? props.margin : 'none')};
 `;
 
 export const ContainerScale = styled.div`
@@ -21,6 +21,7 @@ export const ContainerScale = styled.div`
  display: inline-block;
 
  img {
+  width: 280px;
   height: 180px;
   border-radius: 20px 20px 0 0;
   box-shadow: 1px 2px 10px 1px #484747;
@@ -129,6 +130,15 @@ export const DivNumberItem = styled.div`
   padding-left: 13px;
 `;
 
+export const DivNumberQuestion = styled.div`
+  display: flex;
+  height: 100%;
+  width: 35px;
+  margin: auto 5px auto -1px;
+  padding-left: 13px;
+  font-weight: bold;
+`;
+
 export const DivLabelFormat = styled.div`
   min-height ${props => (props.minHeight ? props.minHeight : 'auto')};
   max-width ${props => (props.maxWidth ? props.maxWidth : 'auto')};
@@ -137,8 +147,13 @@ export const DivLabelFormat = styled.div`
   border: 1px solid #000;
   border-radius: 20px;
   background-color: #fff;
-  margin: 5px;
+  margin: ${props => (props.margin ? props.margin : '5px')};
   padding: ${props => (props.padding ? props.padding : '7px 2px 2px 10px')};
+`;
+
+export const DivLabelQuestion = styled.div`
+  display: flex;
+  height: 100%;
 `;
 
 export const ContainerHeaderAdm = styled.div`

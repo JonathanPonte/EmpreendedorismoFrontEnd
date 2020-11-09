@@ -1,6 +1,6 @@
 import React from 'react';
 import { ContainerHeader, DivButtonDeleteFile, DivInputFileDefault, DivNumberItem, DivLabelFormat } from "../../components/Container";
-import { FormInformationScale, FormDefault } from '../../components/Form';
+import { FormInformationScale, FormDefaultInformations, FormDefault } from '../../components/Form';
 import { Row, Col } from 'antd';
 import { ButtonDefault } from '../../components/Button';
 import { DownloadOutlined, ExceptionOutlined, EditOutlined, PaperClipOutlined, DeleteOutlined } from '@ant-design/icons';
@@ -14,13 +14,18 @@ export default function InformationScale() {
         margin: "10px",
     }
 
-    const divValMaxMin = {
-        display: "flex",
+    const h1 = {
+        float: "initial",
     };
 
     const divInitial = {
         textAlign: "initial",
         maxWidth: "600px",
+    };
+
+    const organizationCol = {
+        display: "grid",
+        textAlign: "initial",
     };
 
     const Questions = [
@@ -29,6 +34,7 @@ export default function InformationScale() {
         { question: "Eu acredito que as pessoas mais importantes para mim pensam que eu não deveria continuar uma carreira como empreendedor" },
         { question: "Até que ponto você se preocupa com o que seu familiar mais próximo pensa quando você deve decidir se deve ou não prosseguir uma carreira como empregado?" },
         { question: "Até que ponto você se preocupa com o que seu amigo mais próximo pensa quando você deve decidir se deve ou não prosseguir uma carreira como empregado?" },
+        { question: "Até que ponto você se preocupa com a pessoa mais importante para você pensa quando você deve decidir se deve ou não prosseguir uma carreira como empregado?" },
         { question: "Até que ponto você se preocupa com a pessoa mais importante para você pensa quando você deve decidir se deve ou não prosseguir uma carreira como empregado?" },
     ]
 
@@ -50,21 +56,23 @@ export default function InformationScale() {
             <FormInformationScale>
                 <Row>
                     <Col span={24}>
-                        <h1>Nome da escala</h1>
+                        <div>
+                            <h1 style={h1}>Nome da escala</h1>
+                        </div>
                         <div style={divHeader}>
-                            <ButtonDefault href="/new_scale" float="right" margin="0 0 0 10px" icon={<EditOutlined />}>
+                            <ButtonDefault href="/new_scale" margin="0 10px 0 0" icon={<EditOutlined />}>
                                 Editar
                             </ButtonDefault>
-                            <ButtonDefault href="/new_scale" float="right" icon={<DownloadOutlined />}>
+                            <ButtonDefault href="/new_scale" icon={<DownloadOutlined />}>
                                 Download CSV
                             </ButtonDefault>
-                            <ButtonDefault href="/new_scale" float="right" margin="0 10px 0 0" icon={<ExceptionOutlined />}>
+                            <ButtonDefault href="/questions" margin="0 0 0 10px" icon={<ExceptionOutlined />}>
                                 Teste escala
                             </ButtonDefault>
                         </div>
                     </Col>
                 </Row>
-                <FormDefault>
+                <FormDefaultInformations>
                     <Row>
                         <Col span={24}>
                             <div>
@@ -90,24 +98,16 @@ export default function InformationScale() {
                                 </DivLabelFormat>
                             </div>
                         </Col>
-                        <Col span={24}>
-                            <div>
-                                <LabelDefault className="f-left">Valores da escala:</LabelDefault >
-                            </div>
-                        </Col>
-                        <Col span={24}>
+                        <Col span={24} style={organizationCol}>
+                            <LabelDefault className="f-left">Valores da escala:</LabelDefault >
                             <div>
                                 <DivLabelFormat maxWidth="100px" padding="2px 2px 2px 32px">
                                     <LabelDefault textAlign="center">1 à 7</LabelDefault>
                                 </DivLabelFormat>
                             </div>
                         </Col>
-                        <Col span={24}>
-                            <div>
-                                <LabelDefault className="f-left">Labels dos Valores:</LabelDefault >
-                            </div>
-                        </Col>
-                        <Col span={24}>
+                        <Col span={24} style={organizationCol}>
+                            <LabelDefault className="f-left">Labels dos Valores:</LabelDefault >
                             <div style={divInitial}>
                                 <DivLabelFormat maxWidth="310px">
                                     <LabelDefault>Discordo Totalmente</LabelDefault>
@@ -117,19 +117,18 @@ export default function InformationScale() {
                                 </DivLabelFormat>
                             </div>
                         </Col>
-                        <Col span={24}>
-                            <div>
-                                <LabelDefault className="f-left">Imagem:</LabelDefault >
-                            </div>
-                        </Col>
-                        <Col span={24}>
-                            <DivButtonDeleteFile>
+                        <Col span={24} style={organizationCol}>
+                            <LabelDefault className="f-left">Imagem:</LabelDefault >
+                            <DivButtonDeleteFile margin="none">
                                 <DivInputFileDefault>
                                     <PaperClipOutlined />
                                     <InputDefault id="inputFile1" type="file" />
                                     <LabelDefault id="labelInputFile1">Foto.jpg</LabelDefault>
                                 </DivInputFileDefault>
                             </DivButtonDeleteFile>
+                        </Col>
+                        <Col span={24}>
+
                         </Col>
                         <Col span={24}>
                             <div>
@@ -143,8 +142,9 @@ export default function InformationScale() {
                                 </CardListDefault>
                             </div>
                         </Col>
+                        
                     </Row>
-                </FormDefault>
+                </FormDefaultInformations>
             </FormInformationScale>
 
         </ContainerHeader>

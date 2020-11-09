@@ -37,3 +37,8 @@
   background: #47337f;
   border: 1px solid #bdb8d8;
 }
+
+div.ant-select-selector{
+  border: 1px solid #000 !important;
+  border-radius: 20px !important;
+}

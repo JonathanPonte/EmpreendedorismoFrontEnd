@@ -7,11 +7,10 @@ import { ButtonDefault} from '../../components/Button';
 
 const cardInfo = [
     { name: "Escala 1", image: "https://blog.hotmart.com/blog/2017/10/BLOG_empreendedorismo-no-brasil-670x419.png" },
-    { name: "Escala 2", image: "https://blog.hotmart.com/blog/2017/10/BLOG_empreendedorismo-no-brasil-670x419.png" },
-    { name: "Escala 3", image: "https://blog.hotmart.com/blog/2017/10/BLOG_empreendedorismo-no-brasil-670x419.png" },
-    { name: "Escala 4", image: "https://blog.hotmart.com/blog/2017/10/BLOG_empreendedorismo-no-brasil-670x419.png" },
-    { name: "Escala 4", image: "https://blog.hotmart.com/blog/2017/10/BLOG_empreendedorismo-no-brasil-670x419.png" },
-    { name: "Escala 5", image: "https://blog.hotmart.com/blog/2017/10/BLOG_empreendedorismo-no-brasil-670x419.png" },
+    { name: "Escala 2", image: "https://cdn.univicosa.com.br/img/portal/noticia/img/adm_7.jpg" },
+    { name: "Escala 4", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR6E53vntX4qUbkGgjnQVX51DWO-PHpeVl4uw&usqp=CAU" },
+    { name: "Escala 4", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRsJR0VJyyAjaofK_uJtW_3FV3f3fSUs-K9YA&usqp=CAU" },
+    { name: "Escala 5", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ-8nx_IXkPnCUKJIpRXB49dKN3_RwYqZMjRQ&usqp=CAU" },
 ]
 
 const renderCard = (card, index) => {
