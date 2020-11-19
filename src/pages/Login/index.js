@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import Logo from '../../assets/images/logo512.png';
 import Face from '../../assets/images/face.png'
 import Google from '../../assets/images/google.png'
+import { useDispatch, useSelector } from 'react-redux';
+import { onLogin } from "../../redux/user/actions";
+import { validateFormLogin } from "../../validate/validateLogin";
 import { Container } from '../../components/Container';
 import { InputDefault } from '../../components/input';
 import { LabelDefault } from '../../components/Label';
 import { ModalRecoverPassword } from '../../components/Modal'
-import { ButtonLogin, ButtonRecoverEmail, ButtonDefault } from '../../components/Button';
+import { ButtonLogin, ButtonRecoverEmail } from '../../components/Button';
 import Form from 'antd/lib/form/Form';
 
 
@@ -30,8 +33,17 @@ const imgSocialMedia = {
 }
 
 export default function Login() {
+
+    const dispatch = useDispatch();
+    const statusLoadingRedux = useSelector(state => (state.user.isSubmitting));
+    const errorRedux = useSelector(state => (state.user.error));
+   
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
     const [visible, setVisible] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
 
     const showModal = () => {
         setVisible(true);
@@ -49,10 +61,38 @@ export default function Login() {
         setVisible(false);
     }
 
+    const handleSubmit = async e => {
+        if (validateFormLogin(email, password)) {
+            dispatch(onLogin(email, password));
+        } else {
+
+            await setError("Dados inválidos.");
+            alert("Dados inválidos")
+
+            setTimeout(() => {
+                setError("DEU RUIM");
+            }, 3000);
+        }
+    }
+
+    const handleChange = e => {
+        switch (e.target.name) {
+            case "email":
+                setEmail(e.target.value);
+                console.log(email);
+                console.log(e.target.value);
+                break;
+            case "password":
+                setPassword(e.target.value);
+                break;
+
+        }
+    }
+
     return (
         <Container>
 
-            <Form style={form}>
+            <Form style={form} onFinish={e => handleSubmit(e)}>
 
                 <img src={Logo} style={img} />
                 <br />
@@ -61,17 +101,26 @@ export default function Login() {
                 </LabelDefault>
                 <InputDefault
                     placeholder="Insira seu email"
+                    onChange={e => handleChange(e)}
+                    value={email}
+                    name="email"
+                    required
                 />
                 <LabelDefault className="f-left">
                     Senha
                 </LabelDefault>
                 <InputDefault
                     placeholder="Insira sua senha"
+                    onChange={e => handleChange(e)}
+                    value={password}
+                    name="password"
+                    type="password"
+                    required
                 />
 
-                <ButtonRecoverEmail className="f-left" onClick={showModal}>
+                <a className="f-left" htmlType="Button" onClick={showModal}>
                     Esqueceu sua senha?
-                </ButtonRecoverEmail>
+                </a>
                 <ModalRecoverPassword
                     title="ESQUECI MINHA SENHA"
                     visible={visible}
@@ -94,8 +143,8 @@ export default function Login() {
                 <br />
                 <br />
 
-                <ButtonLogin>
-                    <a href="/scales_listing" >Entrar</a>
+                <ButtonLogin htmlType="submit">
+                    Entrar
                 </ButtonLogin>
 
                 <br />

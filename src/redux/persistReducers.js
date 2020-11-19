@@ -5,7 +5,7 @@ export default reducers => {
     const persistedReducer = persistReducer({
         key: 'projEmpre',
         storage,
-        whitelist: []
+        whitelist: ['user']
     }, reducers);
 
     return persistedReducer;

@@ -11,9 +11,13 @@ import './assets/style/Default.css';
 
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <PersistGate persistor={persistor}>
+      <Router history={history}>
+        <App />
+      </Router>
+    </PersistGate>
+  </Provider>,
   document.getElementById('root')
 );
 

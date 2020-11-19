@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, useReducer, useState, useEffect } from 'react'
 import { ContainerHeader, DivButtonDeleteFile, DivLabelFormat } from '../../components/Container';
 import { LabelDefault } from '../../components/Label';
 import { Row, Col } from 'antd';
@@ -8,6 +8,8 @@ import { ButtonDefault } from '../../components/Button';
 import { CardListDefault } from '../../components/Card';
 import { DeleteOutlined } from "@ant-design/icons";
 import { FormDefault } from '../../components/Form';
+import api from "../../service/Api";
+import { useSelector } from "react-redux";
 
 const divName = {
     width: "20%",
@@ -17,15 +19,15 @@ const divTrash = {
     width: "80%",
 }
 
-const cardAdms = [
-    { name: "Jonathan Cardoso", cargo: "Administrador" },
-    { name: "Miqueias Rodrigues", cargo: "Administrador" },
-    { name: "Juliana Alves", cargo: "Administrador" },
-    { name: "Ronaldo Almeida", cargo: "Administrador" },
-    { name: "Plinio Feitosa", cargo: "Administrador" },
-    { name: "Rodrigo Lins", cargo: "Administrador" },
-    { name: "Rodrigo Lins", cargo: "Administrador" },
-]
+// const cardAdms = [
+//     { name: "Jonathan Cardoso", cargo: "Administrador" },
+//     { name: "Miqueias Rodrigues", cargo: "Administrador" },
+//     { name: "Juliana Alves", cargo: "Administrador" },
+//     { name: "Ronaldo Almeida", cargo: "Administrador" },
+//     { name: "Plinio Feitosa", cargo: "Administrador" },
+//     { name: "Rodrigo Lins", cargo: "Administrador" },
+//     { name: "Rodrigo Lins", cargo: "Administrador" },
+// ]
 
 const renderCard = (card, index) => {
     return (
@@ -43,8 +45,38 @@ const renderCard = (card, index) => {
     )
 }
 
+
+
 export default function ListAdms() {
-    return (
+
+    const userRedux = useSelector(state => state.user);
+    const [cardAdms, setCardAdms] = useState("");
+
+
+    useEffect(() => {
+      api.get("/adm", {
+            headers: {
+                authorization: 'Bearer ' + userRedux.session.token
+            }
+
+        }).then( response => {
+
+            var listAdms = [];
+
+            listAdms = response.data;
+
+            setCardAdms(listAdms);
+
+        }).catch( e =>{
+
+            console.log("Erro: " + e.response);
+
+        })
+    }, [])
+
+
+
+    return cardAdms ? (
         <ContainerHeader margin="0 100px 0 100px">
             <Row>
                 <Col span={24}>
@@ -72,5 +104,7 @@ export default function ListAdms() {
                 </Col>
             </Row>
         </ContainerHeader>
+    ) : (
+        <div>Loading...</div>
     );
 }

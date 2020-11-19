@@ -1,28 +1,22 @@
-import React from 'react';
+import React, { Component, useState, useEffect } from 'react'
 import { ContainerHeader, Container, ContainerScale } from '../../components/Container';
 import { Row, Col } from 'antd';
 import { SearchOutlined, PlusOutlined } from '@ant-design/icons';
-import { InputDefault } from '../../components/input';
-import { ButtonDefault} from '../../components/Button';
+import { InputDefault, InputSearch } from '../../components/input';
+import { ButtonDefault } from '../../components/Button';
+import api from "../../service/Api";
+import { useSelector } from "react-redux";
+import { isAuthenticatedAdm, isAuthenticatedPeople, login, logout } from "../../service/Auth";
 
-const cardInfo = [
-    { name: "Escala 1", image: "https://blog.hotmart.com/blog/2017/10/BLOG_empreendedorismo-no-brasil-670x419.png" },
-    { name: "Escala 2", image: "https://cdn.univicosa.com.br/img/portal/noticia/img/adm_7.jpg" },
-    { name: "Escala 4", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR6E53vntX4qUbkGgjnQVX51DWO-PHpeVl4uw&usqp=CAU" },
-    { name: "Escala 4", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRsJR0VJyyAjaofK_uJtW_3FV3f3fSUs-K9YA&usqp=CAU" },
-    { name: "Escala 5", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ-8nx_IXkPnCUKJIpRXB49dKN3_RwYqZMjRQ&usqp=CAU" },
-]
+// const cardInfo = [
+//     { name: "Escala 1", image: "https://blog.hotmart.com/blog/2017/10/BLOG_empreendedorismo-no-brasil-670x419.png" },
+//     { name: "Escala 2", image: "https://cdn.univicosa.com.br/img/portal/noticia/img/adm_7.jpg" },
+//     { name: "Escala 4", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR6E53vntX4qUbkGgjnQVX51DWO-PHpeVl4uw&usqp=CAU" },
+//     { name: "Escala 4", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRsJR0VJyyAjaofK_uJtW_3FV3f3fSUs-K9YA&usqp=CAU" },
+//     { name: "Escala 5", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ-8nx_IXkPnCUKJIpRXB49dKN3_RwYqZMjRQ&usqp=CAU" },
+// ]
 
-const renderCard = (card, index) => {
-    return (
-        <ContainerScale margin="40px 20px 0px 10px" key={index} className="box">
-            <a href="/scale/{index}" >
-                <img src={card.image} />
-                <h3>{card.name}</h3>
-            </a>
-        </ContainerScale>
-    )
-}
+
 
 const divS = {
     margin: '10px auto auto auto',
@@ -31,37 +25,91 @@ const divS = {
     textAlign: "initial",
 };
 
-
+console.log("ADM1: ", isAuthenticatedAdm());
+console.log("PEOPLE1: ", isAuthenticatedPeople());
 
 
 export default function ScaleLinsting() {
-    return (
+
+    const [search, setSearch] = useState("");
+    const [cardScales, setCardScales] = useState("");
+    const userRedux = useSelector(state => state.user);
+
+    useEffect(() => {
+        api.get("/auth/escales", {
+            headers: {
+                authorization: 'Bearer ' + userRedux.session.token
+            }
+
+        }).then(response => {
+
+            var listScales = [];
+            listScales = response.data;
+            console.log(listScales.scales);
+            setCardScales(listScales.scales);
+
+        }).catch(e => {
+
+            console.log("Erro: " + e.response);
+
+        })
+    }, [])
+
+    const renderCard = (card) => {
+
+        console.log(card);
+
+        return (
+            <ContainerScale margin="40px 20px 0px 10px" key={card._id} className="box">
+                <a href={"/scale/" + card._id} >
+                    <img src={"http://localhost:3000/" + card.image} />
+                    <h3>{card.title}</h3>
+                </a>
+            </ContainerScale>
+        )
+    }
+
+    const handleChange = e => {
+
+        setSearch(e.target.value);
+        console.log("tar: " + e.target.value);
+        console.log("var: " + search);
+
+    }
+
+    const handleSearch = e => {
+
+    }
+
+    return cardScales ? (
         <ContainerHeader>
             <Row>
                 <Col span={24}>
                     <div>
-                        <InputDefault
-                            prefix={<SearchOutlined className="icon-style" />}
+                        <InputSearch
                             minWidth="200px"
                             maxWidth="400px"
                             float="left"
-                            placeholder="Nome da escala" />
-                        <ButtonDefault margin="0 0 0 10px" float="left">
-                            Buscar
+                            placeholder="Nome da escala"
+                            value={search}
+                            onChange={e => handleChange(e)}
+                            onSearch={e => handleSearch(e)}
+                            allowClear />
+                        {isAuthenticatedAdm() && isAuthenticatedPeople() === false ?
+                            <ButtonDefault href="/new_scale" float="right" icon={<PlusOutlined />}>
+                                Nova escala
                         </ButtonDefault>
-                        <ButtonDefault href="/new_scale" float="right" icon={<PlusOutlined />}>
-                            Nova escala
-                        </ButtonDefault>
+                            : ""}
                     </div>
                 </Col>
             </Row>
             <Row>
                 <Col span={24}>
                     <div style={divS}>
-                        {cardInfo.map(renderCard)}
+                        {cardScales.map(renderCard)}
                     </div>
                 </Col>
             </Row>
         </ContainerHeader>
-    );
+    ) : <div>Loading...</div>;
 }

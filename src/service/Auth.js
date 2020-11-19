@@ -5,8 +5,8 @@ export const TOKEN = "@token";
 
 // Dados de sessão de usuário.
 export const isAuthenticatedAdm = () => {
-    if(sessionStorage.getItem("persist:liveMex") !== null){
-        const state = JSON.parse(sessionStorage.getItem("persist:liveMex"));
+    if(sessionStorage.getItem("persist:projEmpre") !== null){
+        const state = JSON.parse(sessionStorage.getItem("persist:projEmpre"));
         const obj = JSON.parse(state.user);
         const token = obj.session.token;
         if(obj.session.adm) {
@@ -17,12 +17,12 @@ export const isAuthenticatedAdm = () => {
     return false;
 }
 
-export const isAuthenticatedPhysio = () => {
-    if(sessionStorage.getItem("persist:liveMex") !== null){
-        const state = JSON.parse(sessionStorage.getItem("persist:liveMex"));
+export const isAuthenticatedPeople = () => {
+    if(sessionStorage.getItem("persist:projEmpre") !== null){
+        const state = JSON.parse(sessionStorage.getItem("persist:projEmpre"));
         const obj = JSON.parse(state.user);
         const token = obj.session.token;
-        if(obj.session.physio) {
+        if(obj.session.people) {
             return token ? true : false;
         }
         return false;
@@ -31,8 +31,8 @@ export const isAuthenticatedPhysio = () => {
 }
 
 export const getToken = () => {
-    if(sessionStorage.getItem("persist:liveMex")){
-        const state = JSON.parse(sessionStorage.getItem("persist:liveMex"));
+    if(sessionStorage.getItem(TOKEN)){
+        const state = JSON.parse(sessionStorage.getItem("persist:projEmpre"));
         const obj = JSON.parse(state.user);
         const token = obj.session.token;
         return token;

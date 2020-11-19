@@ -9,6 +9,7 @@ import { FormDefault } from '../../components/Form';
 import { SelectDefault, OptionDefault } from '../../components/Select';
 import { Row, Col, Alert } from 'antd';
 import api from '../../service/Api';
+import { validateFormLogin } from "../../validate/validateLogin";
 
 
 const organizationCol = {
@@ -108,7 +109,7 @@ export default function SingUp() {
         if (!isFilledFields()) {
             alert("Todos os campos devem ser preenchidos");
         } else {
-            if (password == confirmPassword) {
+            if (password == confirmPassword && validateFormLogin(email, password)) {
 
                 const response = await api.post('auth/register', people).then(response => {
 
@@ -161,7 +162,7 @@ export default function SingUp() {
                                 className="f-left"
                                 format="DD/MM/YYYY"
                                 onChange={getData}
-                                required />
+                                required/>
                         </div>
                     </Col>
                     <Col span={8} style={organizationCol}>
@@ -253,9 +254,6 @@ export default function SingUp() {
                     <Col span={24}>
                         <div>
                             <ButtonDefault style={button} htmlType="submit">Cadastrar</ButtonDefault>
-                            <button variant="primary" type="submit">
-                                Submit
-                        </button>
                         </div>
 
                     </Col>

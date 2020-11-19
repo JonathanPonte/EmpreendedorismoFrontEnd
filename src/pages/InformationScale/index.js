@@ -1,12 +1,12 @@
 import React from 'react';
 import { ContainerHeader, DivButtonDeleteFile, DivInputFileDefault, DivNumberItem, DivLabelFormat } from "../../components/Container";
-import { FormInformationScale, FormDefaultInformations, FormDefault } from '../../components/Form';
+import { FormInformationScale, FormDefaultInformations} from '../../components/Form';
 import { Row, Col } from 'antd';
 import { ButtonDefault } from '../../components/Button';
-import { DownloadOutlined, ExceptionOutlined, EditOutlined, PaperClipOutlined, DeleteOutlined } from '@ant-design/icons';
-import { InputDefault, TextArea, InputItemCard } from '../../components/input';
+import { DownloadOutlined, ExceptionOutlined, EditOutlined, PaperClipOutlined} from '@ant-design/icons';
+import { InputDefault,} from '../../components/input';
 import { LabelDefault } from '../../components/Label';
-import { CardDefault, CardListDefault } from '../../components/Card'
+import { CardListDefault } from '../../components/Card'
 
 export default function InformationScale() {
 
